@@ -20,13 +20,25 @@ class HangpersonGame
   end
 
   def guess(new_guess) 
-    raise ArgumentError if new_guess == nil || new_guess.length == 0 || !(/[[:alpha:]]/ === new_guess) 
-    return unless new_guess.length == 1
+    raise ArgumentError if new_guess == nil || new_guess.length !=1 || !(/[[:alpha:]]/ === new_guess) 
     if (@word[new_guess]) 
       @guesses[new_guess]? false : @guesses << new_guess 
     else
       @wrong_guesses[new_guess] ? false : @wrong_guesses << new_guess 
     end 
+  end
+
+  def word_with_guesses
+    return "-" * @word.length  if guesses.empty?
+    result = ''
+    @word.split(//).each {|char| @guesses[char]? result << char : result << "-"}
+    return result
+  end
+
+  def check_win_or_lose
+    return :lose if @wrong_guesses.length >= 7
+    return :win if word_with_guesses == @word
+    return :play
   end
 
 end
