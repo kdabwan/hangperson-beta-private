@@ -20,7 +20,7 @@ class HangpersonGame
   end
 
   def guess(new_guess) 
-    raise ArgumentError if new_guess == nil || new_guess.length !=1 || !(/[[:alpha:]]/ === new_guess) 
+    raise ArgumentError if new_guess == nil || !(/[A-Za-z]/ === new_guess) 
     new_guess = new_guess.downcase
     if (@word[new_guess]) 
       @guesses[new_guess]? false : @guesses << new_guess 
