@@ -37,7 +37,7 @@ class HangpersonGame
   end
 
   def check_win_or_lose
-    return :lose if @wrong_guesses.length >= @word.length
+    return :lose if @wrong_guesses.length >= 7
     return :win if word_with_guesses == @word
     return :play
   end
